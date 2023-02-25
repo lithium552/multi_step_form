@@ -93,6 +93,7 @@ function App() {
   const [isMonthly, setIsMonthly] = useState(true)
   const [checkedPlan, setCheckedPlan] = useState({value: 'Arcade', price: 9})
   const [checkedAddons, setChekedAddons] = useState(addonsData)
+  const [isConfirmed, seIsConfirmed] = useState(false)
   const filteredData = data.filter(item => item.isActive === true)
   const submitFormHandler = (e: any) => {
     e.preventDefault()
@@ -145,8 +146,12 @@ function App() {
           ))}
         </div>
         <div className='container-form'>
+          {!isConfirmed &&
+          <>
           <h1>{filteredData[0].title}</h1>
           <p>{filteredData[0].content}</p>
+          </>
+          }
           {filteredData[0].id === 1 && <Form submitFormHandler={submitFormHandler}/>}
           {filteredData[0].id === 2 && <SelectPlan 
           isMonthly={isMonthly}
@@ -164,18 +169,21 @@ function App() {
           checkedAddons={checkedAddons}
           checkedPlan={checkedPlan}
           onChangePlanHandler={onChangePlanHandler}
+          isConfirmed={isConfirmed}
           /> }
         </div>
-        <div className='btn-container'>
+        {!isConfirmed && (<div className='btn-container'>
           <div>
             {filteredData[0].previous && 
             (<button 
             className='btn-back'
             onClick={onClickPreviousHandler}
             >Go Back</button>)}
-            <button form={filteredData[0].id === 1 ? 'form' : ''} onClick={() => onClickHandler(filteredData[0].id)}>Next Step</button>
+            {filteredData[0].id !== 4 && !isConfirmed ? 
+            (<button form={filteredData[0].id === 1 ? 'form' : ''} onClick={() => onClickHandler(filteredData[0].id)}>Next Step</button>)
+            : (<button className='btn-confirm' onClick={() => seIsConfirmed(true)}>Confirm</button>)}
           </div>
-        </div>
+        </div>)}
       </div>
     </>
   )
