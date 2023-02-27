@@ -167,7 +167,11 @@ body {
 
 .btn-container {
     background-color: $White;
-    margin-top: auto;
+    // margin-top: auto;
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
 
     div {
         padding: 1rem;
