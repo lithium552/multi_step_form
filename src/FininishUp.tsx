@@ -1,10 +1,10 @@
-import { useState } from 'react'
 import ConfirmedSub from './ConfirmedSub'
+import { Addon } from './Addons'
 
 const FininishUp: React.FC<any> = ({ isMonthly, checkedPlan, checkedAddons, onChangePlanHandler, isConfirmed }) => {
 
-  const price = (obj) => isMonthly ? `$${obj.price}/mo` : `$${obj.price * 10}/yr`
-  const filteredAddons = checkedAddons.filter(addon => (addon.checked === true))
+  const price = (obj: Addon) => isMonthly ? `$${obj.price}/mo` : `$${obj.price * 10}/yr`
+  const filteredAddons = checkedAddons.filter((addon: Addon) => (addon.checked === true))
 
   return (
     <>
@@ -20,8 +20,8 @@ const FininishUp: React.FC<any> = ({ isMonthly, checkedPlan, checkedAddons, onCh
             </div>
             <hr />
             <div className="container-addons">
-              {filteredAddons.map(addon => (
-                <div>
+              {filteredAddons.map((addon: Addon) => (
+                <div key={addon.title}>
                   <span>{addon.title}</span>
                   <p>+{price(addon)}</p>
                 </div>
@@ -30,7 +30,7 @@ const FininishUp: React.FC<any> = ({ isMonthly, checkedPlan, checkedAddons, onCh
           </div>
           <div className="total">
             <span>Total {isMonthly ? '(per month)' : '(per year)'}</span>
-            <p>${checkedPlan.price + (filteredAddons.reduce((acc, curr) => acc + curr.price, 0)) * (isMonthly ? 1 : 10)}{isMonthly ? '/mo' : '/yr'}</p>
+            <p>${checkedPlan.price + (filteredAddons.reduce((acc: number, curr: Addon) => acc + curr.price, 0)) * (isMonthly ? 1 : 10)}{isMonthly ? '/mo' : '/yr'}</p>
           </div>
         </>)
         }

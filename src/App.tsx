@@ -1,6 +1,5 @@
 import '../index.scss'
 import { ReactComponent as SideBarMobile } from '../assets/images/bg-sidebar-mobile.svg'
-import { ReactComponent as SideBarDesktop } from '../assets/images/bg-sidebar-desktop.svg'
 import Form from './Form'
 import React from 'react'
 import { useState } from 'react'
@@ -8,6 +7,15 @@ import SelectPlan from './SelectPlan'
 import Addons from './Addons'
 import FininishUp from './FininishUp'
 
+
+interface StateData {
+  id: number;
+    title: string;
+    content: string;
+    isActive: boolean;
+    previous: boolean;
+    name: string;
+}
 
 const addonsData = [
   {
@@ -68,7 +76,7 @@ const DUMMY_DATA = [
   }
 ]
 
-const refreshData = (stateData, filteredData, previous = false) => {
+const refreshData = (stateData: StateData[], filteredData: StateData[], previous = false) => {
   const newData = [...stateData].map(item => {
     if (filteredData[0].id === item.id) {
       return {
@@ -157,7 +165,6 @@ function App() {
             </div>
             </div>
           ))}
-          {/* <SideBarDesktop /> */}
         </div>
         <div className='container-form'>
           {!isConfirmed &&
