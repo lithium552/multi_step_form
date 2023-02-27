@@ -148,6 +148,15 @@ function App() {
         setData(newData)
       }
   }
+
+  window.addEventListener('resize', () => {
+    setTimeout(() => {
+    console.log('listener')
+    let vh = window.innerHeight
+    const el = document.querySelector('.desktop')
+    if(el !== null) el.style.height = `${vh}px`
+    },1000)
+  })
   return (
     <>
       <div className='container-background'>
