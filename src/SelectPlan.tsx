@@ -30,7 +30,6 @@ const SelectPlan: React.FC<any> = ({checkedPlan, setCheckedPlan, setIsMonthly, i
   }
 
   const radioInputHandler = (e: any, price: number) => {
-    console.log(price)
     setCheckedPlan({value: e.target.value, price: isMonthly ? price : price*10})
   }
 

@@ -1,5 +1,6 @@
 import '../index.scss'
 import { ReactComponent as SideBarMobile } from '../assets/images/bg-sidebar-mobile.svg'
+import { ReactComponent as SideBarDesktop } from '../assets/images/bg-sidebar-desktop.svg'
 import Form from './Form'
 import React from 'react'
 import { useState } from 'react'
@@ -39,6 +40,7 @@ const DUMMY_DATA = [
     content: 'Please provide your name, email address, and phone number.',
     isActive: true,
     previous: false,
+    name: 'your info'
   },
   {
     id: 2,
@@ -46,6 +48,7 @@ const DUMMY_DATA = [
     content: 'You have the option of monthly or yearly billing.',
     isActive: false,
     previous: true,
+    name: 'select plan'
   },
   {
     id: 3,
@@ -53,6 +56,7 @@ const DUMMY_DATA = [
     content: 'Add-ons help enhance your billing experience.',
     isActive: false,
     previous: true,
+    name: 'add-ons'
   },
   {
     id: 4,
@@ -60,6 +64,7 @@ const DUMMY_DATA = [
     content: 'Double-check everything looks OK before confirming.',
     isActive: false,
     previous: true,
+    name: 'summary'
   }
 ]
 
@@ -71,7 +76,8 @@ const refreshData = (stateData, filteredData, previous = false) => {
         title: item.title,
         content: item.content,
         isActive: !item.isActive,
-        previous: item.previous
+        previous: item.previous,
+        name: item.name
       }
     }
     if (previous ? filteredData[0].id - 1 === item.id :filteredData[0].id + 1 === item.id) {
@@ -80,7 +86,8 @@ const refreshData = (stateData, filteredData, previous = false) => {
         title: item.title,
         content: item.content,
         isActive: !item.isActive,
-        previous: item.previous
+        previous: item.previous,
+        name: item.name
       }
     } else return item
   })
@@ -100,7 +107,6 @@ function App() {
     console.log(e.target.name.value)
     console.log(e.target.email.value)
     console.log(e.target.phone.value)
-    console.log(filteredData)
     const newData = refreshData(data, filteredData)
     setData(newData)
   }
@@ -139,11 +145,19 @@ function App() {
       <div className='container-background'>
         <SideBarMobile />
       </div>
+      <div className='desktop'>
       <div className='container'>
         <div className='container-btn'>
           {data.map(item => (
+            <div key={item.title} className='steps-container'>
             <div key={item.id} className={item.isActive ? 'active' : ''}>{item.id}</div>
+            <div className='step'>
+              <span>STEP {item.id}</span>
+              <p>{item.name}</p>
+            </div>
+            </div>
           ))}
+          {/* <SideBarDesktop /> */}
         </div>
         <div className='container-form'>
           {!isConfirmed &&
@@ -184,6 +198,7 @@ function App() {
             : (<button className='btn-confirm' onClick={() => seIsConfirmed(true)}>Confirm</button>)}
           </div>
         </div>)}
+      </div>
       </div>
     </>
   )

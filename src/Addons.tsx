@@ -15,7 +15,6 @@ const Addons: React.FC<any> = ({isMonthly, checkedAddons, setChekedAddons}) => {
         const res = [...filteredArr, {...addon, checked: !addon.checked}].sort((a,b) => a.id - b.id)
         setChekedAddons(res)
     }
-    console.log(checkedAddons)
     return (
         <div className='container-addons'>
             {checkedAddons.map((addon: Addon) => (

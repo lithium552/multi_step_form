@@ -15,7 +15,7 @@
 
 @mixin activeBorderBackground {
     background-color: $Magnolia;
-    border: 1px solid $Purplish-blue;
+    border: 1px solid $Marine-blue;
 }
 
 $font-regular: 'Ubuntu-Regular', sans-serif;
@@ -79,6 +79,12 @@ body {
         align-items: center;
         gap: 1rem;
         padding: 1rem;
+        .step {
+            display: none;
+        }
+        svg {
+            display: none;
+        }
 
         .active {
             background-color: $Pastel-blue;
@@ -135,7 +141,7 @@ body {
     input[type='tel'] {
         width: 100%;
         padding: .5rem;
-        font-family: $font-regular;
+        font-family: $font-medium;
         font-size: 1rem;
         color: $Marine-blue;
         border: 1px solid $Light-gray;
@@ -144,6 +150,10 @@ body {
 
         &:focus {
             outline: 1px solid $Marine-blue;
+            color: $Marine-blue;
+        }
+        &::placeholder {
+            font-family: $font-regular;
         }
 
         // &:last-child {
@@ -408,5 +418,167 @@ body {
     p {
         text-align: center;
         margin-top: .6rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .container-form {
+        width: 60%;
+        margin: 1rem auto 0;
+    }
+}
+
+@media (min-width: 1440px) {
+    .container-background {
+        display: none;
+        svg {
+            display: none;
+        }
+    }
+    .desktop {
+        background-color: aqua;
+        height: 100vh;
+        display: grid;
+        place-content: center;
+    }
+    .container {
+        width: 55rem;
+        // margin: 0 auto 0;
+        background-color: $White;
+        border-radius: 10px;
+        padding: 1rem;
+        height: 70vh;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto auto;
+        .container-btn {
+            background-image: url(/assets/images/bg-sidebar-desktop.svg);
+            background-size: cover;
+            height: auto;
+            width: 17rem;
+            border-radius: 10px;
+            grid-row: span 2;
+            flex-direction: column;
+            position: relative;
+            justify-content: flex-start;
+            align-items: start;
+            gap: 2rem;
+            padding-left: 2rem;
+            padding-top: 3rem;
+            .steps-container {
+                // height: 100%;
+                width: max-content;
+                border: none;
+                border-radius: none;
+                display: grid;
+                grid-template-columns: 1fr max-content;
+                column-gap: 1rem;
+                .step {
+                    // width: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    width: auto;
+                    text-transform: uppercase;
+                    border: none;
+                    border-radius: none;
+                    span {
+                        color: $Cool-gray;
+                        font-size: .8rem;
+                        font-family: $font-regular;
+                    }
+                    p {
+                        font-size: .9rem;
+                    }
+                }
+            }
+        }
+        .container-form {
+            box-shadow: none;
+            width: 80%;
+            input {
+                padding: .7rem 1rem;
+            }
+            .container-select-plan {
+                display: grid;
+                grid-template-columns: repeat(3, 8rem);
+                grid-template-rows: auto auto;
+                column-gap: 1rem;
+                margin-top: 2rem;
+                .container-toggle {
+                    grid-column: 1/4;
+                    svg:hover {
+                        cursor: pointer;
+                    }
+                }
+                div {
+                    label {
+                        flex-direction: column;
+                        gap: 2rem;
+                        &:hover {
+                            cursor: pointer;
+                            border: 1px solid $Marine-blue;
+                        }
+                    }
+                }
+            }
+            .container-addons {
+                margin-top: 2rem;
+                label{
+                    padding: 1rem 1.5rem;
+                    column-gap: 1.5rem;
+                    margin-bottom: 1rem;
+                    &:hover {
+                        cursor: pointer;
+                        border: 1px solid $Marine-blue;
+                    }
+                }
+                input {
+                    padding: 0;
+                }
+            }
+            .container-end {
+                margin-top: 2rem;
+                .container-plan {
+                    div {
+                        p:hover {
+                            cursor: pointer;
+                            color: $Marine-blue;
+                        }
+                    }
+                }
+            }
+        }
+        .btn-container {
+            width: 70%;
+            margin: auto auto 0;
+            div {
+            box-shadow: none;
+            padding: 0;
+            margin-bottom: 1rem;
+            .btn-confirm {
+                padding: 1rem 2rem;
+                &:hover {
+                    background-color: $Pastel-blue;
+                }
+            }
+            .btn-back:hover {
+                cursor: pointer;
+                color: $Marine-blue;
+            }
+            button:last-child{
+                padding: .8rem 1.8rem;
+                &:hover {
+                    cursor: pointer;
+                    background-color: $Purplish-blue;
+                }
+            }
+            
+            }
+        }
+    }
+
+    .container-form {
+        width: 60%;
+        margin: 1rem auto 0;
     }
 }
