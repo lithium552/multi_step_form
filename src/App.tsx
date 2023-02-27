@@ -2,7 +2,7 @@ import '../index.scss'
 import { ReactComponent as SideBarMobile } from '../assets/images/bg-sidebar-mobile.svg'
 import Form from './Form'
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import SelectPlan from './SelectPlan'
 import Addons from './Addons'
 import FininishUp from './FininishUp'
@@ -149,13 +149,18 @@ function App() {
       }
   }
 
+  useEffect(()=> {
+    let vh = window.innerHeight
+    const el = document.querySelector('.desktop') as HTMLDivElement
+    if(el !== null) el.style.height = `${vh}px`
+  },[])
+
   window.addEventListener('resize', () => {
     setTimeout(() => {
-    console.log('listener')
     let vh = window.innerHeight
-    const el = document.querySelector('.desktop')
+    const el = document.querySelector('.desktop') as HTMLDivElement
     if(el !== null) el.style.height = `${vh}px`
-    },1000)
+    },200)
   })
   return (
     <>
